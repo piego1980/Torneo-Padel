@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Torneo Padel">
+<meta name="apple-mobile-web-app-title" content="Padel Eight">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#080d1a">
-<title>Padel Tournament</title>
+<meta name="theme-color" content="#d90f22">
+<title>Padel Eight</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #080d1a;
-  --surface: #101828;
-  --card: #162035;
-  --lime: #c9f900;
-  --clay: #ff6b35;
-  --blue: #4b7bec;
-  --pink: #e84393;
-  --text: #eef2ff;
-  --muted: #71809d;
-  --dim: #2d3d5a;
-  --gold: #f5c518;
-  --win-green: #23d18b;
-  --loss-red: #f14c60;
+  --bg: #f7f8fb;
+  --surface: #f1f3f7;
+  --card: #ffffff;
+  --lime: #d90f22;
+  --clay: #ef3340;
+  --blue: #0b2d50;
+  --pink: #7f1734;
+  --text: #142033;
+  --muted: #687386;
+  --dim: #d7dce5;
+  --gold: #d7a51d;
+  --win-green: #16794d;
+  --loss-red: #c8192e;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { background: var(--bg); }
@@ -41,7 +41,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(-55deg, transparent, transparent 80px, rgba(255,255,255,0.013) 80px, rgba(255,255,255,0.013) 82px);
+  background: linear-gradient(180deg, rgba(217,15,34,.035), transparent 220px);
   pointer-events: none;
   z-index: 0;
 }
@@ -342,16 +342,95 @@ button { touch-action: manipulation; }
   .court-tag { min-width: 40px; }
   .score-inp { width: 34px; }
 }
+
+/* ACCESS GATE */
+.auth-gate {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: calc(24px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));
+}
+.auth-card {
+  width: min(100%, 420px);
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 20px;
+  padding: 24px 20px;
+}
+.auth-mark {
+  width: 54px; height: 54px; border-radius: 16px;
+  display: grid; place-items: center;
+  background: var(--lime); color: #080d1a; font-size: 1.55rem;
+  margin-bottom: 18px;
+}
+.auth-title { font-family: 'Oswald', system-ui; font-size: 1.9rem; line-height: 1; }
+.auth-copy { color: var(--muted); font-size: .84rem; line-height: 1.5; margin: 10px 0 18px; }
+.auth-label { display:block; color: var(--muted); font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:7px; }
+.auth-input { width:100%; min-height:48px; border-radius:12px; border:1px solid var(--dim); background:var(--surface); color:var(--text); padding:0 13px; font-size:16px; outline:none; }
+.auth-input:focus { border-color:var(--lime); }
+.auth-btn { width:100%; min-height:48px; border:0; border-radius:12px; margin-top:12px; background:var(--lime); color:#080d1a; font-weight:800; cursor:pointer; }
+.auth-error { min-height:20px; margin-top:10px; color:var(--loss-red); font-size:.78rem; }
+.auth-hidden { display:none !important; }
+.header-lock { margin-left:auto; width:40px; height:40px; border-radius:11px; border:1px solid var(--dim); background:transparent; color:var(--muted); cursor:pointer; }
+.header-lock:active { color:var(--text); border-color:var(--muted); }
+
+/* PADEL EIGHT BRAND */
+.brand-mark { overflow:hidden; background:#d90f22; padding:0; border:1px solid rgba(11,45,80,.08); }
+.brand-mark img { width:100%; height:100%; object-fit:cover; display:block; }
+.brand-title { color:var(--blue); letter-spacing:.02em; }
+.page-title, .hero-title, .auth-title { color:var(--blue); }
+.card { box-shadow:0 5px 18px rgba(11,45,80,.055); border-color:#e8eaf0; }
+.hero-card { background:linear-gradient(145deg, rgba(217,15,34,.09), #fff 55%); border-color:rgba(217,15,34,.12); }
+.hero-copy, .setup-note, .home-summary, .rule-item { color:#5f6c80; }
+.btn-primary, .auth-btn { color:#fff; box-shadow:0 3px 10px rgba(217,15,34,.15); }
+.btn-secondary, .btn-ghost { background:#fff; }
+.segmented { background:#eceff4; }
+.segmented button.active { background:#fff; color:var(--blue); box-shadow:0 1px 4px rgba(11,45,80,.08); }
+.player-input, .team-select, .meta-input, .player-level, .auth-input, .score-inp { background:#fff; }
+.level-toggle-row, .team-tile, .match-row, .home-tournament, .archive-card, .empty-state { background:#f6f7f9; border-color:#e7eaf0; }
+.switch input:checked + .switch-slider::before { background:#fff; }
+.team-tile.A::before, .dot-A { background:#d90f22; }
+.team-tile.B::before, .dot-B { background:#0b2d50; }
+.team-tile.C::before, .dot-C { background:#ef3340; }
+.team-tile.D::before, .dot-D { background:#60758c; }
+.team-tile.A .team-badge { background:#d90f22; color:#fff; }
+.team-tile.B .team-badge { background:#0b2d50; color:#fff; }
+.team-tile.C .team-badge { background:#ef3340; color:#fff; }
+.team-tile.D .team-badge { background:#60758c; color:#fff; }
+.match-row.has-result { border-color:rgba(217,15,34,.2); }
+.standings-table td, .archive-score, .archive-standings, .rule-item { border-color:#e8eaf0; }
+.bottom-nav { background:rgba(255,255,255,.95); border-color:#e1e5eb; box-shadow:0 -5px 18px rgba(11,45,80,.06); }
+.nav-btn.active { color:var(--lime); background:rgba(217,15,34,.07); }
+.auth-gate { background:linear-gradient(180deg,#fff 0%,#f7f8fb 100%); }
+.auth-card { background:#fff; border-color:#e6e9ef; box-shadow:0 12px 36px rgba(11,45,80,.1); }
+.auth-mark { width:72px; height:72px; padding:0; overflow:hidden; background:#d90f22; }
+.auth-mark img { width:100%; height:100%; object-fit:cover; display:block; }
+.header-lock { background:#fff; border-color:#dce1e8; }
+
 </style>
 </head>
 <body>
-<div class="app-shell">
+<div class="auth-gate" id="auth-gate">
+  <form class="auth-card" id="auth-form">
+    <div class="auth-mark"><img src="icons/apple-touch-icon.png" alt="Padel Eight"></div>
+    <h1 class="auth-title">Accesso protetto</h1>
+    <p class="auth-copy">Inserisci la password per aprire Padel Eight su questo dispositivo.</p>
+    <label class="auth-label" for="auth-password">Password</label>
+    <input class="auth-input" id="auth-password" type="password" autocomplete="current-password" inputmode="text" required>
+    <button class="auth-btn" type="submit">Accedi</button>
+    <div class="auth-error" id="auth-error" aria-live="polite"></div>
+  </form>
+</div>
+<div class="app-shell auth-hidden" id="app-shell">
   <header class="app-header">
-    <div class="brand-mark">🎾</div>
+    <div class="brand-mark"><img src="icons/apple-touch-icon.png" alt="Padel Eight"></div>
     <div>
-      <div class="brand-kicker">Padel Tournament</div>
-      <div class="brand-title">TORNEI PADEL</div>
+      <div class="brand-kicker">Tournament manager</div>
+      <div class="brand-title">PADEL EIGHT</div>
     </div>
+    <button class="header-lock" type="button" onclick="lockApp()" aria-label="Blocca app" title="Blocca app">🔒</button>
   </header>
 
   <main>
@@ -474,7 +553,7 @@ button { touch-action: manipulation; }
   </main>
 </div>
 
-<nav class="bottom-nav" aria-label="Menu principale">
+<nav class="bottom-nav auth-hidden" id="bottom-nav" aria-label="Menu principale">
   <button class="nav-btn active" id="nav-home" type="button" onclick="showView('home')"><span class="nav-icon">⌂</span><span>Home</span></button>
   <button class="nav-btn" id="nav-new" type="button" onclick="showView('new')"><span class="nav-icon">＋</span><span>Nuovo</span></button>
   <button class="nav-btn" id="nav-history" type="button" onclick="showView('history')"><span class="nav-icon">◷</span><span>Storico</span></button>
@@ -948,6 +1027,55 @@ restoreCurrentScores();
 renderArchive();
 renderHome();
 update();
+</script>
+
+<script>
+const PADEL_PASSWORD_HASH = '389347f53c99759af58a0d738d7bed7c3100d1c6d9e38f16bebf4c275efde580';
+const PADEL_AUTH_KEY = 'padelAuth_v1';
+
+async function sha256Hex(value) {
+  const data = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function setAuthenticated(authenticated) {
+  const gate = document.getElementById('auth-gate');
+  const shell = document.getElementById('app-shell');
+  const nav = document.getElementById('bottom-nav');
+  gate.classList.toggle('auth-hidden', authenticated);
+  shell.classList.toggle('auth-hidden', !authenticated);
+  nav.classList.toggle('auth-hidden', !authenticated);
+  if (authenticated) {
+    localStorage.setItem(PADEL_AUTH_KEY, '1');
+  } else {
+    localStorage.removeItem(PADEL_AUTH_KEY);
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-error').textContent = '';
+    setTimeout(() => document.getElementById('auth-password').focus(), 50);
+  }
+}
+
+async function handleAuthSubmit(event) {
+  event.preventDefault();
+  const input = document.getElementById('auth-password');
+  const error = document.getElementById('auth-error');
+  const hash = await sha256Hex(input.value);
+  if (hash === PADEL_PASSWORD_HASH) {
+    error.textContent = '';
+    setAuthenticated(true);
+  } else {
+    error.textContent = 'Password non corretta.';
+    input.select();
+  }
+}
+
+function lockApp() {
+  setAuthenticated(false);
+}
+
+document.getElementById('auth-form').addEventListener('submit', handleAuthSubmit);
+setAuthenticated(localStorage.getItem(PADEL_AUTH_KEY) === '1');
 </script>
 
 <script>
