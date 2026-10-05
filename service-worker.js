@@ -1,4 +1,4 @@
-const CACHE_NAME = 'padel-eight-v1-brand';
+const CACHE_NAME = 'padel-eight-v2-modern';
 const APP_SHELL = [
   './',
   './index.html',
